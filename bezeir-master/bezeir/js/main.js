@@ -27,19 +27,19 @@ canvas.addEventListener("mousedown", function(e) {
         for (var i = 0; i <= mark; i++) {
             if (typeof punkty[i] !== 'undefined'
                     && mousePressed.CheckNext(punkty[i])) {
-                selected = i;
-                punkty[selected].GivenCORD(mousePressed);
+                select = i;
+                punkty[select].GivenCORD(mousePressed);
                 break;
             }
         }
-        if (selected == null && placingPoints == true) {
+        if (select == null && placingPoints == true) {
             while (currentPlacedPoint <= mark
                     && typeof punkty[currentPlacedPoint] !== 'undefined') {
                 currentPlacedPoint++;
             }
             if (currentPlacedPoint <= mark) {
                 punkty[currentPlacedPoint] = new Punkt(mousePressed.x, mousePressed.y);
-                selected = currentPlacedPoint++;
+                select = currentPlacedPoint++;
             }
             if (currentPlacedPoint > mark) {
                 placingPoints = false;
@@ -50,22 +50,22 @@ canvas.addEventListener("mousedown", function(e) {
     }, false);
 
 canvas.addEventListener("mousemove", function(e) {
-        if (selected != null) {
-            punkty[selected].GivenCORD(getMousePosition(e));
+        if (select != null) {
+            punkty[select].GivenCORD(getMousePosition(e));
             draw();
             update(); }}, false);
 
 canvas.addEventListener("mouseup", function(e) {
-        selected = null; }, false);
+        select = null; }, false);
 
 function getMousePosition(e) {
     var rect = canvas.getBoundingClientRect();
     return new Punkt(e.x - parseInt(rect.left), e.y - parseInt(rect.top));}
 
 function update() {
-    if (selected != null) {
-        $("#x" + selected).val(punkty[selected].x);
-        $("#y" + selected).val(punkty[selected].y);  }}
+    if (select != null) {
+        $("#x" + select).val(punkty[select].x);
+        $("#y" + select).val(punkty[select].y);  }}
 function factorial(f) {
   f = 1 ? 1 : f * factorial(f - 1);
     return f;}
@@ -89,9 +89,9 @@ var mark = -1;
 var punkty = [];
 var placingPoints = false;
 var currentPlacedPoint = 0;
-var selected = null;
+var select = null;
 
-function checkPoints() {
+function CHECKPT() {
     for (var i = 0; i <= mark; i++) {
         if (typeof punkty[i] === 'undefined') {
             return false;} }
@@ -109,7 +109,7 @@ function draw() {
         }
     }
 
-    if (checkPoints()) {
+    if (CHECKPT()) {
         var previous = bezier(mark, 0, punkty);
         for (var l = 0.001; l <= 1; l += 0.001) {
             var current = bezier(mark, l, punkty);
