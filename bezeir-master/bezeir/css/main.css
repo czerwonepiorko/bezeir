@@ -1,0 +1,35 @@
+body{
+  display: flex;
+}
+.stopien{
+  display: flex;
+}
+.stopien input{
+  width:200px;
+  height: 20px;
+margin-top: 17px;
+margin-left: 12px;
+}
+canvas {
+border: 1px solid black;
+margin-left: 100px;
+margin-top: 50px;
+}
+.first-column{
+  list-style-type: none;
+}
+
+#punkty li:first-child::before{
+  content:"Punkt startowy X: ";
+  background-color:#a8a8ff;
+}
+#punkty li:nth-child(2){
+      margin-left: 120px;
+}
+#punkty li:nth-last-child(2)::before{
+  content:"Punkt końcowy Y: ";
+  background-color:#d2a2ff;
+}
+#punkty li:last-child{
+      margin-left: 120px;
+}
